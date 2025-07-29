@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Registration Form</title>
   <style>
-    /* Reset and font setup */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -61,6 +60,10 @@
       box-shadow: 0 0 6px rgba(102, 166, 255, 0.4);
     }
 
+    input:invalid {
+      border-color: #ff6b6b;
+    }
+
     button {
       width: 100%;
       padding: 12px;
@@ -92,7 +95,7 @@
 </head>
 <body>
 
-  <form action="#" method="post" novalidate>
+  <form action="#" method="post">
     <h2>Student Registration</h2>
 
     <label for="name">Full Name</label>
