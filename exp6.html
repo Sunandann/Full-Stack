@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive SVG Drawing Tool with Mouse Event Handlers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        svg {
+            border: 2px solid black;
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+
+<h2>SVG Drawing Tool</h2>
+<svg id="drawingArea" width="600" height="400"></svg>
+
+<script>
+    const svg = document.getElementById('drawingArea');
+    let isDrawing = false;
+    let currentLine = null;
+    let startX = 0;
+    let startY = 0;
+
+    svg.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        startX = e.offsetX;
+        startY = e.offsetY;
+
+        currentLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        currentLine.setAttribute("x1", startX);
+        currentLine.setAttribute("y1", startY);
+        currentLine.setAttribute("x2", startX);
+        currentLine.setAttribute("y2", startY);
+        currentLine.setAttribute("stroke", "blue");
+        currentLine.setAttribute("stroke-width", "2");
+        svg.appendChild(currentLine);
+    });
+
+    svg.addEventListener('mousemove', (e) => {
+        if (!isDrawing) return;
+        currentLine.setAttribute("x2", e.offsetX);
+        currentLine.setAttribute("y2", e.offsetY);
+    });
+
+    svg.addEventListener('mouseup', () => {
+        isDrawing = false;
+        currentLine = null;
+    });
+
+    svg.addEventListener('mouseleave', () => {
+        isDrawing = false;
+        currentLine = null;
+    });
+</script>
+
+</body>
+</html>
